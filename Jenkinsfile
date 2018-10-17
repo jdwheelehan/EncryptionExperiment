@@ -24,8 +24,7 @@ pipeline {
         branch 'develop'
       }
       steps {
-        sh '''./jenkins/deploy.sh${params.DEPLOY_TO}
-        echo "Deployed to Dev"'''
+        sh 'echo "Deployed to Dev"'
         sh 'echo "run integration test"'
       }
     }
