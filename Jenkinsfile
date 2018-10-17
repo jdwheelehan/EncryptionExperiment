@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '''//mvn -B -DskipTests clean package
-echo "Run Build"'''
+        sh 'echo "Run Build"'
       }
     }
     stage('Perform Unit Tests') {
@@ -12,7 +11,7 @@ echo "Run Build"'''
         branch 'develop'
       }
       steps {
-        sh 'mvn test'
+        sh 'echo "run unit tests"'
       }
     }
     stage('Upload Artifact') {
