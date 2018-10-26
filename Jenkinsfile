@@ -1,13 +1,8 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3-alpine'
-      args '-v /root/.m2:/root/.m2'
-    }
-
-  }
+  agent any
   stages {
     stage('Build') {
+      agent any
       steps {
         sh 'echo "Run Build"'
       }
@@ -60,12 +55,20 @@ pipeline {
         echo 'Release Branch Tagged To Master'
       }
     }
-    stage('Post to XLR') {
+    stage('Merge Release with Master') {
       when {
         branch 'release'
       }
       steps {
-        echo 'Deployed to Prod'
+        sh 'echo "Merge to Master"'
+      }
+    }
+    stage('Post to XLR') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'echo "Post to XLR"'
       }
     }
   }
