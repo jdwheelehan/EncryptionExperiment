@@ -7,9 +7,23 @@ pipeline {
         sh 'echo "Run Build"'
       }
     }
-    stage('Perform Unit Tests') {
-      steps {
-        sh 'echo "run unit tests"'
+    stage('Run Testing') {
+      parallel {
+        stage('Perform Unit Tests') {
+          steps {
+            sh 'echo "run unit tests"'
+          }
+        }
+        stage('Checkmarx Scan') {
+          steps {
+            sh 'echo "Run Checkmarx Scan"'
+          }
+        }
+        stage('Sonarqube Check') {
+          steps {
+            sh 'echo "Run Sonarqube"'
+          }
+        }
       }
     }
     stage('Upload Artifact') {
