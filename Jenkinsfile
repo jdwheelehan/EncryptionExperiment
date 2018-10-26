@@ -55,7 +55,7 @@ pipeline {
     }
     stage('Post to XLR') {
       when {
-        branch 'release'
+        branch 'master'
       }
       steps {
         echo 'Deployed to Prod'
