@@ -8,9 +8,6 @@ pipeline {
       }
     }
     stage('Perform Unit Tests') {
-      when {
-        branch 'develop'
-      }
       steps {
         sh 'echo "run unit tests"'
       }
