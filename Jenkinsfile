@@ -51,12 +51,20 @@ pipeline {
         echo 'Release Branch Tagged To Master'
       }
     }
+    stage('Merge Release with Master') {
+      when {
+        branch 'release'
+      }
+      steps {
+        sh 'echo "Merge to Master"'
+      }
+    }
     stage('Post to XLR') {
       when {
         branch 'master'
       }
       steps {
-        echo 'Deployed to Prod'
+        sh 'echo "Post to XLR"'
       }
     }
   }
